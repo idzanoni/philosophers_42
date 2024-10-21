@@ -6,15 +6,15 @@
 /*   By: izanoni <izanoni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:40:57 by izanoni           #+#    #+#             */
-/*   Updated: 2024/10/18 18:46:20 by izanoni          ###   ########.fr       */
+/*   Updated: 2024/10/21 20:12:45 by izanoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	philo_isalpha(int i)
+int	philo_isdigit(int i)
 {
-	if ((i >= 65 && i <= 90) || (i >= 97 && i <= 122))
+	if (i >= 48 && i <= 57)
 		return (1);
 	else
 		return (0);

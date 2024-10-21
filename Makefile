@@ -6,7 +6,7 @@
 #    By: izanoni <izanoni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/18 16:14:50 by izanoni           #+#    #+#              #
-#    Updated: 2024/10/18 16:18:36 by izanoni          ###   ########.fr        #
+#    Updated: 2024/10/21 20:12:50 by izanoni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ CC = cc
 FLAGS = -pthread -g -Wall -Wextra -Werror
 RM = rm -f
 
-FILES = philo.c
+FILES = philo.c \
+		philo_lib.c \
+		check.c		
 
 OBJ = $(FILES:%.c=%.o)
 
@@ -26,7 +28,7 @@ $(NAME): $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $@
 
 %.o: %.c
-	$(CC) $(FLAGS) $< -o $@ -I .
+	$(CC) $(FLAGS) -c $< -o $@ -I .
 
 clean:
 	@$(RM) $(OBJ)

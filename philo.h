@@ -6,7 +6,7 @@
 /*   By: izanoni <izanoni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:43:24 by izanoni           #+#    #+#             */
-/*   Updated: 2024/10/18 18:49:41 by izanoni          ###   ########.fr       */
+/*   Updated: 2024/10/21 20:34:15 by izanoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,6 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-typedef struct s_philo	t_philo;
-
-typedef struct s_philo
-{
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_think;
-	int	time_to_sleep;
-	int	max_time_to_eat;
-}	t_philo;
-
 typedef struct s_data
 {
 	int	time_to_die;
@@ -39,12 +28,20 @@ typedef struct s_data
 	int	max_time_to_eat;
 }	t_data;
 
+typedef struct s_philo
+{
+	t_data			*ph_data;
+	pthread_mutex_t	left_fork;
+	pthread_mutex_t	right_fork;
+}	t_philo;
+
 //philo
-t_data	init_data(int argc, char **argv);
-t_philo	*init_philo(t_data *ph_data);
+t_data	init_data(char **argv);
+t_philo	*init_philo(int philos, t_data *ph_data);
+
 
 //philo_lib
-int		philo_isalpha(int i);
+int		philo_isdigit(int i);
 int		philo_atoi(const char *nptr);
 
 //check

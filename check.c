@@ -6,7 +6,7 @@
 /*   By: izanoni <izanoni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:38:46 by izanoni           #+#    #+#             */
-/*   Updated: 2024/10/18 18:46:24 by izanoni          ###   ########.fr       */
+/*   Updated: 2024/10/21 20:13:37 by izanoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	number_of_args(int argc)
 {
 	if (argc < 5 || argc > 6)
 	{
-		printf("Wrong Input!\n");
+		printf("Wrong Input\n");
 		return (1);
 	}
 	return (0);
@@ -47,7 +47,7 @@ int	args_is_num(char **argv)
 		count = 0;
 		while (argv[i][count] != '\0')
 		{
-			if (philo_isalpha(argv[i][count]) == 1)
+			if (philo_isdigit(argv[i][count]) != 1)
 			{
 				printf("Invalid arguments\n");
 				return (1);
