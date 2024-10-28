@@ -6,7 +6,7 @@
 /*   By: izanoni <izanoni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 16:02:51 by izanoni           #+#    #+#             */
-/*   Updated: 2024/10/21 20:14:07 by izanoni          ###   ########.fr       */
+/*   Updated: 2024/10/28 20:26:42 by izanoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,17 @@ int	main(int argc, char **argv)
 	t_data	ph_data;
 	t_philo	*thinker;
 
-	if (check_input(argc, argv) == 1)
-		return (-1);
-	else
+	if (check_input(argc, argv) == 0)
 	{
 		ph_data = init_data(argv);
+		ph_data.start_time = get_milisec();	
 		thinker = init_philo(philo_atoi(argv[1]), &ph_data);
-	}	
+		init_routine(thinker);
+		
+		free(thinker);
+	}
+	else
+		return (-1);
 	return (0);
 }
 
@@ -31,6 +35,7 @@ t_data	init_data(char **argv)
 {
 	t_data	ph_data;
 
+	ph_data.philo_range = philo_atoi(argv[1]);
 	ph_data.time_to_die = philo_atoi(argv[2]);
 	ph_data.time_to_eat = philo_atoi(argv[3]);
 	ph_data.time_to_sleep = philo_atoi(argv[4]);
@@ -47,13 +52,24 @@ t_philo	*init_philo(int philos, t_data *ph_data)
 	int	count;
 	
 	count = 0;
-	thinker = (t_philo *) malloc ((philos + 1) * sizeof (t_philo));
+	thinker = (t_philo *) malloc ((philos) * sizeof (t_philo));
 	if (!thinker)
 		return(NULL);
-	while (count <= philos)
+	while (count < philos)
 	{
 		thinker[count].ph_data = ph_data;
+		thinker[count].right_fork = &thinker[(count + 1) % philos].left_fork;
+		pthread_mutex_init(&thinker[count].left_fork, NULL);
+		pthread_mutex_init(&thinker[count].mutex_meal, NULL);
 		count++;
-	}	
+	}
 	return (thinker);
+}
+
+long	get_milisec(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, 0);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }

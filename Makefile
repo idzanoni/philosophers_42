@@ -6,7 +6,7 @@
 #    By: izanoni <izanoni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/18 16:14:50 by izanoni           #+#    #+#              #
-#    Updated: 2024/10/21 20:12:50 by izanoni          ###   ########.fr        #
+#    Updated: 2024/10/28 19:57:23 by izanoni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ RM = rm -f
 
 FILES = philo.c \
 		philo_lib.c \
-		check.c		
+		check.c	\
+		routine.c	
 
 OBJ = $(FILES:%.c=%.o)
 
