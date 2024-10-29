@@ -6,7 +6,7 @@
 /*   By: izanoni <izanoni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:38:46 by izanoni           #+#    #+#             */
-/*   Updated: 2024/10/21 20:13:37 by izanoni          ###   ########.fr       */
+/*   Updated: 2024/10/29 18:49:16 by izanoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	number_of_args(int argc)
 	if (argc < 5 || argc > 6)
 	{
 		printf("Wrong Input\n");
+		printf("Usage: (number of philos) (time_to_die) (time_to_eat) ");
+		printf("(time_to_sleep) [number_of_times_each_philo_must_eat]\n");
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: izanoni <izanoni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:43:24 by izanoni           #+#    #+#             */
-/*   Updated: 2024/10/28 20:02:51 by izanoni          ###   ########.fr       */
+/*   Updated: 2024/10/29 20:00:10 by izanoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_data
 typedef struct s_philo
 {
 	t_data			*ph_data;
+	int				philo_id;
 	pthread_t		thread;
 	pthread_mutex_t	left_fork;
 	pthread_mutex_t	*right_fork;
@@ -64,5 +65,8 @@ int		args_is_num(char **argv);
 //routine
 void	init_routine(t_philo *thinker);
 void 	*routine(void *arg);
+void 	destroy_mutex(t_philo *thinker);
+void	philo_meal(t_philo *thinker);
+
 
 #endif

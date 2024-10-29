@@ -6,7 +6,7 @@
 /*   By: izanoni <izanoni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 16:02:51 by izanoni           #+#    #+#             */
-/*   Updated: 2024/10/28 20:26:42 by izanoni          ###   ########.fr       */
+/*   Updated: 2024/10/29 19:43:40 by izanoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ t_philo	*init_philo(int philos, t_data *ph_data)
 {
 	t_philo	*thinker;
 	int	count;
+	int id;
 	
+	id = 1;
 	count = 0;
 	thinker = (t_philo *) malloc ((philos) * sizeof (t_philo));
 	if (!thinker)
@@ -58,10 +60,12 @@ t_philo	*init_philo(int philos, t_data *ph_data)
 	while (count < philos)
 	{
 		thinker[count].ph_data = ph_data;
+		thinker[count].philo_id = id;
 		thinker[count].right_fork = &thinker[(count + 1) % philos].left_fork;
 		pthread_mutex_init(&thinker[count].left_fork, NULL);
 		pthread_mutex_init(&thinker[count].mutex_meal, NULL);
 		count++;
+		id++;
 	}
 	return (thinker);
 }
