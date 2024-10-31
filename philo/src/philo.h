@@ -6,7 +6,7 @@
 /*   By: izanoni <izanoni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:43:24 by izanoni           #+#    #+#             */
-/*   Updated: 2024/10/29 20:00:10 by izanoni          ###   ########.fr       */
+/*   Updated: 2024/10/30 16:55:12 by izanoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,18 @@
 # include <sys/time.h>
 # include <unistd.h>
 
+# define TAKE_FORKS "has taken a fork"
+# define THINK "is thinking"
+# define SLEEP "is sleeping"
+# define EAT "is eating"
+# define DIED "died"
+
 typedef struct s_data
 {
 	long			start_time;
 	int				philo_range;
 	int				time_to_die;
 	int				time_to_eat;
-	int				time_to_think;
 	int				time_to_sleep;
 	int				max_time_to_eat;
 	int				dead_or_alive;
@@ -37,7 +42,7 @@ typedef struct s_philo
 {
 	t_data			*ph_data;
 	int				philo_id;
-	pthread_t		thread;
+	pthread_t		self_thread;
 	pthread_mutex_t	left_fork;
 	pthread_mutex_t	*right_fork;
 	long			last_meal;
@@ -49,7 +54,9 @@ typedef struct s_philo
 t_data	init_data(char **argv);
 t_philo	*init_philo(int philos, t_data *ph_data);
 long	get_milisec(void);
-
+void	global_print(long time, t_philo *thinker, char *action);
+void	last_meal(t_philo *thinker);
+void	lonely_philo(t_philo *thinker);
 
 //philo_lib
 int		philo_isdigit(int i);
