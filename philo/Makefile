@@ -6,7 +6,7 @@
 #    By: izanoni <izanoni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/18 16:14:50 by izanoni           #+#    #+#              #
-#    Updated: 2024/10/29 17:08:23 by izanoni          ###   ########.fr        #
+#    Updated: 2024/11/02 15:41:08 by izanoni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,13 @@ CC = cc
 FLAGS = -pthread -g -Wall -Wextra -Werror
 RM = rm -f
 
-FILES = ./src/philo.c \
-		./src/philo_lib.c \
-		./src/check.c	\
-		./src/routine.c	
+FILES = philo.c \
+		philo_lib.c \
+		check.c	\
+		routine.c	\
+		fulfill.c	\
+		utils.c
+
 
 OBJ = $(FILES:%.c=%.o)
 

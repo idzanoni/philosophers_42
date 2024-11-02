@@ -6,7 +6,7 @@
 /*   By: izanoni <izanoni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 18:43:24 by izanoni           #+#    #+#             */
-/*   Updated: 2024/10/30 16:55:12 by izanoni          ###   ########.fr       */
+/*   Updated: 2024/11/02 15:34:15 by izanoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,18 @@ typedef struct s_philo
 {
 	t_data			*ph_data;
 	int				philo_id;
+	int				ate;
+	pthread_mutex_t	mutex_ate;
 	pthread_t		self_thread;
 	pthread_mutex_t	left_fork;
 	pthread_mutex_t	*right_fork;
 	long			last_meal;
 	pthread_mutex_t	mutex_meal;
-	
 }	t_philo;
 
 //philo
-t_data	init_data(char **argv);
-t_philo	*init_philo(int philos, t_data *ph_data);
-long	get_milisec(void);
-void	global_print(long time, t_philo *thinker, char *action);
-void	last_meal(t_philo *thinker);
 void	lonely_philo(t_philo *thinker);
+void	init_routine(t_philo *thinker);
 
 //philo_lib
 int		philo_isdigit(int i);
@@ -70,10 +67,23 @@ int		max_min_philo(char	**argv);
 int		args_is_num(char **argv);
 
 //routine
-void	init_routine(t_philo *thinker);
-void 	*routine(void *arg);
-void 	destroy_mutex(t_philo *thinker);
+void	monitoring(t_philo *thinker);
+void	*routine(void *arg);
 void	philo_meal(t_philo *thinker);
+void	bed_time(t_philo *thinker);
+void	work_time(t_philo *thinker);
 
+//aux
+void	destroy_mutex(t_philo *thinker);
+long	get_time(t_philo *thinker);
+int		satisfaction(t_philo *thinker);
+int		someone_died(t_data *ph_data);
+void	last_meal(t_philo *thinker);
+
+//fulfill
+t_data	init_data(char **argv);
+t_philo	*init_philo(int philos, t_data *ph_data);
+long	get_milisec(void);
+void	global_print(t_philo *thinker, char *action);
 
 #endif
